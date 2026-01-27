@@ -1,6 +1,11 @@
-const baseUrl = process.env.WORDPRESS_URL;
 import { gql, GraphQLClient } from 'graphql-request';
 import { Category } from './types';
+
+const baseUrl = process.env.WORDPRESS_URL;
+
+if (!baseUrl) {
+    throw new Error("WORDPRESS_URL is not defined in environment variables");
+}
 
 const client = new GraphQLClient(`${baseUrl}/graphql`);
 
